@@ -23,6 +23,18 @@ const ListStuff = () => {
       ready: rdy,
     };
   }, []);
+
+  const removeItem = (itemId) => {
+    // Call a method to remove the item from the collection
+    Meteor.call('stuffs.remove', itemId, (error) => {
+      if (error) {
+        console.log(error.reason);
+      } else {
+        console.log('Item removed successfully.');
+      }
+    });
+  };
+
   return (ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
@@ -37,10 +49,11 @@ const ListStuff = () => {
                 <th>Quantity</th>
                 <th>Condition</th>
                 <th>Edit</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody>
-              {stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}
+              {stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} removeItem={removeItem} />)}
             </tbody>
           </Table>
         </Col>
