@@ -22,7 +22,7 @@ const Footer = () => (
               <Button variant="primary" href="https://www.paypal.com/donate/?hosted_button_id=QAQ3ZMQ3YWJ9A">Donate</Button>
             </Col>
             <Col xs={12} lg={3} className="text-muted">
-              <small>© 2023 Full Cycle Takeout</small><br/>
+              <small>© 2023 Full Cycle Takeout</small><br />
               <small>A 501(c)(3) Compliance Non-Profit Organization.</small>
             </Col>
           </Row>
