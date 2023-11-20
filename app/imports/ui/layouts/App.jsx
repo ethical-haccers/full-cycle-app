@@ -6,8 +6,6 @@ import { Roles } from 'meteor/alanning:roles';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListStuff from '../pages/ListStuff';
-import ListStuffAdmin from '../pages/ListStuffAdmin';
 import RentContainer from '../pages/RentContainer';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
@@ -17,6 +15,7 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
+import AccountsPage from '../pages/admin/AccountsPage';
 
 const AdminOrRegularLanding = () => {
   const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
@@ -43,10 +42,12 @@ const App = () => {
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
-          <Route path="/history/:_id" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
+          {/* <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+          {/* These two routes will be added once the other admin pages are created
+          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
+          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
