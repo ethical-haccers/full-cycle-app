@@ -17,6 +17,7 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
+import FAQ from '../pages/FAQ'
 
 const AdminOrRegularLanding = () => {
   const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
@@ -44,7 +45,7 @@ const App = () => {
           <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/history/:_id" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
-          <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/faqs" element={<FAQ />} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
