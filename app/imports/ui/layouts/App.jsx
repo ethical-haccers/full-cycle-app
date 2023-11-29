@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          {/* <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+          <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           {/* These two routes will be added once the other admin pages are created
           <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
