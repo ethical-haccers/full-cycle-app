@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest ]
-        node: [ 13.14.0, 14.13.1 ]
+        node: [ 8, 10, 12 ]
 
     steps:
       - uses: actions/setup-node@v1
@@ -16,6 +16,6 @@ jobs:
           node-version: ${{ matrix.node }}
       - uses: actions/checkout@v1
       - name: Run TestCafe Tests
-        uses: DevExpress/testcafe-action@latest
+      - uses: DevExpress/testcafe-action@latest
         with:
           args: "chrome tests"
