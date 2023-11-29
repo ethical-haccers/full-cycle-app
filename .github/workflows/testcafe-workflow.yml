@@ -3,18 +3,17 @@ on: [push]
 
 jobs:
   test:
-    name: Run TestCafe Tests
+    name: Run Tests Across Node.js Versions and Operating Systems
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest ]
-        node: [ 13, 14 ]
+        node: [ 13.14.0, 14.13.1 ]
 
     steps:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - name: Check out the repository
         uses: actions/checkout@v1
       - name: Run TestCafe Tests
         uses: DevExpress/testcafe-action@latest
