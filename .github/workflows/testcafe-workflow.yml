@@ -8,7 +8,14 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v1
+      - name: Run Meteor commands
+        shell: bash -l {0}
+        run: |
+          meteor npm install
+          meteor npm run lint
+          meteor npm run testcafe-ci
       - name: Run tests
-        uses: DevExpress/testcafe-action@latest
-        with:
-          args: "meteor npm run tests"
+        shell: bash -l {0}
+        run: |
+          meteor npm run testcafe
+
