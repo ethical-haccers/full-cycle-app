@@ -15,10 +15,8 @@ class ContainersCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       containerId: String,
-      checkoutDate: {
-        type: Date,
-        defaultValue: new Date(), // Automatically populate with the current date
-      },
+      owner: String,
+      checkoutDate: Date,
       returnDate: {
         type: Date,
         optional: true, // Initially null, to be updated upon return
@@ -34,8 +32,8 @@ class ContainersCollection {
     this.collection.attachSchema(this.schema);
 
     // Define names for publications and subscriptions
-    this.userPublicationName = `${this.name}.publication.user`;
-    this.adminPublicationName = `${this.name}.publication.admin`;
+    this.userPublicationName = `${this.containerId}.publication.user`;
+    this.adminPublicationName = `${this.containerId}.publication.admin`;
   }
 }
 

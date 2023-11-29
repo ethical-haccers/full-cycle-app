@@ -15,7 +15,9 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
-import AccountsPage from '../pages/admin/AccountsPage';
+import OrderHistory from '../pages/OrderHistory';
+import AdminOrderHistory from '../pages/AdminOrderHistory';
+// import AccountsPage from '../pages/admin/AccountsPage';
 
 const AdminOrRegularLanding = () => {
   const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
@@ -40,11 +42,13 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/rent" element={<ProtectedRoute><RentContainer owner={Meteor.us} /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           {/* <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+          <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
           {/* These two routes will be added once the other admin pages are created
           <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
