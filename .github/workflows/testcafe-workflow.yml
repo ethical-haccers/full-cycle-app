@@ -4,15 +4,19 @@ on: [push]
 jobs:
   test:
     name: Run TestCafe Tests
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ windows-latest, ubuntu-latest ]
+        node: [ 13, 14 ]
 
     steps:
       - uses: actions/setup-node@v1
         with:
-          node-version: 13.14.0
+          node-version: ${{ matrix.node }}
       - name: Check out the repository
         uses: actions/checkout@v1
-      - name: Run tests
+      - name: Run TestCafe Tests
         uses: DevExpress/testcafe-action@latest
         with:
-          args: "meteor npm run start testcafe"
+          args: "chrome tests"
