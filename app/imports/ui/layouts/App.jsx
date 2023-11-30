@@ -15,7 +15,7 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
-import FAQ from '../pages/FAQ'
+import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
   const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
@@ -43,10 +43,7 @@ const App = () => {
           <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/faqs" element={<FAQ />} />
-          <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          {/* These two routes will be added once the other admin pages are created
-          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
-          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+          <Route path="/about" element={<ProtectedRoute ready={ready}><Landing /></ProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
