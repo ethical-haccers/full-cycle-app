@@ -34,10 +34,10 @@ const NavBar = () => {
                   Orders Overview
                 </NavDropdown.Item>
                 <NavDropdown.Item id="user-history-dropdown-admin" as={NavLink} to="/">
-                  Containers Overview 
+                  Containers Overview
                 </NavDropdown.Item>
                 <NavDropdown.Item id="accounts-overview" as={NavLink} to="/accountspage">
-                  Accounts Overview 
+                  Accounts Overview
                 </NavDropdown.Item>
               </NavDropdown>
             ) : ''}
