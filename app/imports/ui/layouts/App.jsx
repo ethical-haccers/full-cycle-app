@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import RentContainer from '../pages/RentContainer';
+import ReturnContainer from '../pages/ReturnContainer';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -15,6 +16,9 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
+import AccountsPage from '../pages/admin/AccountsPage';
+import ContainerOverview from '../pages/admin/ContainerOverviewPage';
+import OrderOverview from '../pages/admin/OrderOverviewPage';
 import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
@@ -41,8 +45,11 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
-          <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/return" element={<ProtectedRoute><ReturnContainer /></ProtectedRoute>} />
           <Route path="/faqs" element={<FAQ />} />
+          <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
+          <Route path="/containeroverview" element={<AdminProtectedRoute><ContainerOverview /></AdminProtectedRoute>} />
+          <Route path="/orderoverview" element={<AdminProtectedRoute><OrderOverview /></AdminProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute ready={ready}><Landing /></ProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />

@@ -7,15 +7,15 @@ const AdminLanding = () => (
     <h1>Admin Dashboard</h1>
 
     <div className="dashboard-buttons">
-      <Link to="/admin/orders">
+      <Link to="/ordersoverview">
         <button type="button" className="dashboard-button">Orders Overview</button>
       </Link>
 
-      <Link to="/admin/containers">
+      <Link to="/containeroverview">
         <button type="button" className="dashboard-button">Containers Overview</button>
       </Link>
 
-      <Link to="/accountspage">
+      <Link to="/accountoverview">
         <button type="button" className="dashboard-button">Accounts Overview</button>
       </Link>
     </div>
