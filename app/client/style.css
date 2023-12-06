@@ -71,3 +71,18 @@ footer, footer a {
 .dashboard-button:hover {
   background-color: #0056b3;
 }
+
+.main-landing {
+  background: url('/images/waffle-setup-cropped.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.instructions-bg {
+  background: url('/images/takeout-utensils.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.landing-instruction{
+  background-color: rgba(0,0,0,0.5);
+  font-size: 250%;
+}
