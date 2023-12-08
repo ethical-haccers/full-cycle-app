@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import RentContainer from '../pages/RentContainer';
+import ReturnContainer from '../pages/ReturnContainer';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -17,7 +18,9 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
 import OrderHistory from '../pages/OrderHistory';
 import AdminOrderHistory from '../pages/AdminOrderHistory';
-// import AccountsPage from '../pages/admin/AccountsPage';
+import AccountsPage from '../pages/admin/AccountsPage';
+import ContainerOverview from '../pages/admin/ContainerOverviewPage';
+import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
   const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
@@ -43,15 +46,15 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/rent" element={<ProtectedRoute><RentContainer owner={Meteor.us} /></ProtectedRoute>} />
-          <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/return" element={<ProtectedRoute><ReturnContainer /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          {/* <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+          <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
-          {/* These two routes will be added once the other admin pages are created
-          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
-          <Route path="/adminlanding" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} /> */}
+//           <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
+//           <Route path="/containeroverview" element={<AdminProtectedRoute><ContainerOverview /></AdminProtectedRoute>} />
+//           <Route path="/orderoverview" element={<AdminProtectedRoute><OrderOverview /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
