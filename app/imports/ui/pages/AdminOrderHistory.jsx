@@ -44,6 +44,7 @@ const AdminOrderHistory = () => {
                 <th>Container ID</th>
                 <th>Owner</th>
                 <th>Checkout Date</th>
+                <th>Return Date</th>
                 <th>Status</th>
               </tr>
             </thead>

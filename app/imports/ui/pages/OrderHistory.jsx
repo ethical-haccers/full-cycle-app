@@ -24,6 +24,17 @@ const OrderHistory = () => {
     };
   }, []);
 
+  const returnItem = (orderID) => {
+    // Call a method to remove the item from the collection
+    Meteor.call('containers.assign', { _id: orderID }, { $set: { status: 'with-vendor' } }, (error) => {
+      if (error) {
+        console.log(error.reason);
+      } else {
+        console.log('Container successfully returned.');
+      }
+    });
+  };
+
   return (ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
@@ -42,12 +53,13 @@ const OrderHistory = () => {
               <tr>
                 <th>Container ID</th>
                 <th>Checkout Date</th>
+                <th>Return Date</th>
                 <th>Status</th>
                 <th>Return</th>
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => <OrderItem key={order._id} order={order} />)}
+              {orders.map((order) => <OrderItem key={order._id} order={order} returnFunction={returnItem(order._id)} />)}
             </tbody>
           </Table>
         </Col>
