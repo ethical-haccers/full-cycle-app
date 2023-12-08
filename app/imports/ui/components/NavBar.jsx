@@ -44,7 +44,7 @@ const NavBar = () => {
           </Nav>
           <Nav className="justify-content-end">
             <Nav.Link id="faqs" as={NavLink} to="/faqs" key="faqs">FAQs</Nav.Link>
-            <Nav.Link id="about" as={NavLink} to="/about" key="about">About Us</Nav.Link>
+            <Nav.Link as="a" href="https://www.zerowasteoahu.org/" target="_blank" rel="noopener noreferrer" id="about" key="about">About Us</Nav.Link>
             {currentUser === '' ? (
               <NavDropdown id="login-dropdown" title="Login">
                 <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to="/signin">
