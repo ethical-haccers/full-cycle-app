@@ -16,9 +16,10 @@ import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AdminLanding from '../pages/admin/AdminLanding';
+import OrderHistory from '../pages/OrderHistory';
+import AdminOrderHistory from '../pages/AdminOrderHistory';
 import AccountsPage from '../pages/admin/AccountsPage';
 import ContainerOverview from '../pages/admin/ContainerOverviewPage';
-import OrderOverview from '../pages/admin/OrderOverviewPage';
 import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
@@ -44,13 +45,16 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/rent" element={<ProtectedRoute><RentContainer owner={Meteor.us} /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><ReturnContainer /></ProtectedRoute>} />
-          <Route path="/faqs" element={<FAQ />} />
-          <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
-          <Route path="/containeroverview" element={<AdminProtectedRoute><ContainerOverview /></AdminProtectedRoute>} />
-          <Route path="/orderoverview" element={<AdminProtectedRoute><OrderOverview /></AdminProtectedRoute>} />
-          <Route path="/about" element={<ProtectedRoute ready={ready}><Landing /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
+          <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
+          <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
+//           <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
+//           <Route path="/containeroverview" element={<AdminProtectedRoute><ContainerOverview /></AdminProtectedRoute>} />
+//           <Route path="/orderoverview" element={<AdminProtectedRoute><OrderOverview /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

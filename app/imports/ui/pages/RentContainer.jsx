@@ -1,8 +1,10 @@
 // RentContainer.jsx
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, SelectField, SubmitField, TextField, DateField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, SelectField, SubmitField, TextField, DateField, HiddenField } from 'uniforms-bootstrap5';
+import PropTypes from 'prop-types';
 import swal from 'sweetalert';
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import { Containers } from '../../api/container/Containers';
@@ -29,8 +31,9 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 const RentContainer = () => {
   const submit = (data, formRef) => {
     const { containerId, checkoutDate, returnDate, status } = data;
+    const owner = Meteor.user().username;
     Containers.collection.insert(
-      { containerId, checkoutDate, returnDate, status },
+      { containerId, checkoutDate, returnDate, status, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -51,7 +54,7 @@ const RentContainer = () => {
             <Card>
               <Card.Body>
                 <TextField name="containerId" />
-                <DateField name="checkoutDate" disabled />
+                <DateField name="checkoutDate" value={new Date()} disabled />
                 <DateField name="returnDate" />
                 <SelectField name="status" />
                 <SubmitField value="Submit" />

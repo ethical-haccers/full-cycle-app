@@ -26,17 +26,18 @@ const NavBar = () => {
               <Nav.Link id="list-stuff-nav" as={NavLink} to="/return" key="list">Container Return</Nav.Link>,
             ]) : ''}
             {currentUser && !Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link id="order-history" as={NavLink} to="/orderhistory" key="history">Order History</Nav.Link>
+              <Nav.Link id="order-history" as={NavLink} to="/history" key="history">Order History</Nav.Link>
             ) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
               <NavDropdown id="admin-history-dropdown" title="View Transactions (Admin)">
-                <NavDropdown.Item id="order-overview" as={NavLink} to="/orderoverview">
+                <NavDropdown.Item id="admin-order-history" as={NavLink} to="/adminhistory">
                   Orders Overview
                 </NavDropdown.Item>
                 <NavDropdown.Item id="user-history-dropdown-admin" as={NavLink} to="/containersoverview">
                   Containers Overview
                 </NavDropdown.Item>
-                <NavDropdown.Item id="accounts-overview" as={NavLink} to="/accountoverview">
+                <NavDropdown.Item id="accounts-overview" as={NavLink} to="/accountspage">
+
                   Accounts Overview
                 </NavDropdown.Item>
               </NavDropdown>
