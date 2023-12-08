@@ -19,7 +19,6 @@ import AdminLanding from '../pages/admin/AdminLanding';
 import OrderHistory from '../pages/OrderHistory';
 import AdminOrderHistory from '../pages/AdminOrderHistory';
 import AccountsPage from '../pages/admin/AccountsPage';
-import ContainerOverview from '../pages/admin/ContainerOverviewPage';
 import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
@@ -52,9 +51,8 @@ const App = () => {
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
-//           <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
-//           <Route path="/containeroverview" element={<AdminProtectedRoute><ContainerOverview /></AdminProtectedRoute>} />
-//           <Route path="/orderoverview" element={<AdminProtectedRoute><OrderOverview /></AdminProtectedRoute>} />
+          <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
+          <Route path="/adminorderhistory" element={<AdminProtectedRoute><AdminOrderHistory /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -11,10 +11,6 @@ const AdminLanding = () => (
         <button type="button" className="dashboard-button">Orders Overview</button>
       </Link>
 
-      <Link to="/containeroverview">
-        <button type="button" className="dashboard-button">Containers Overview</button>
-      </Link>
-
       <Link to="/accountoverview">
         <button type="button" className="dashboard-button">Accounts Overview</button>
       </Link>

@@ -33,11 +33,7 @@ const NavBar = () => {
                 <NavDropdown.Item id="admin-order-history" as={NavLink} to="/adminhistory">
                   Orders Overview
                 </NavDropdown.Item>
-                <NavDropdown.Item id="user-history-dropdown-admin" as={NavLink} to="/containersoverview">
-                  Containers Overview
-                </NavDropdown.Item>
                 <NavDropdown.Item id="accounts-overview" as={NavLink} to="/accountspage">
-
                   Accounts Overview
                 </NavDropdown.Item>
               </NavDropdown>
