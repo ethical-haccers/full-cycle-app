@@ -17,13 +17,16 @@ const SignUp = ({ location }) => {
   const schema = new SimpleSchema({
     email: String,
     password: String,
+    organization: String,
+    firstName: String,
+    lastName: String
   });
   const bridge = new SimpleSchema2Bridge(schema);
 
   /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
-    const { email, password } = doc;
-    Accounts.createUser({ email, username: email, password }, (err) => {
+    const { email, password, organization, firstName, lastName } = doc;
+    Accounts.createUser({ email, username: email, password, organization, firstName, lastName }, (err) => {
       if (err) {
         setError(err.reason);
       } else {

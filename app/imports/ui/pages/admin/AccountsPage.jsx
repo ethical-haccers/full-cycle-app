@@ -28,7 +28,10 @@ const AccountsPage = () => {
             <thead>
               <tr>
                 <th>username</th>
-                <th>id</th>
+                <th>password</th>
+                <th>organization</th>
+                <th>firstName</th>
+                <th>lastName</th>
               </tr>
             </thead>
             <tbody>
