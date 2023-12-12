@@ -18,15 +18,18 @@ const SignUp = ({ location }) => {
     email: String,
     password: String,
     organization: String,
-    firstName: String,
-    lastName: String
+    fullName: String,
   });
   const bridge = new SimpleSchema2Bridge(schema);
 
   /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
-    const { email, password, organization, firstName, lastName } = doc;
-    Accounts.createUser({ email, username: email, password, organization, firstName, lastName }, (err) => {
+    const { email, password, organization, fullName } = doc;
+    const profile = { 
+      organization: organization,
+      fullname: fullName
+    }
+    Accounts.createUser({ email, username: email, password, profile }, (err) => {
       if (err) {
         setError(err.reason);
       } else {
@@ -54,6 +57,8 @@ const SignUp = ({ location }) => {
               <Card.Body>
                 <TextField name="email" placeholder="E-mail address" />
                 <TextField name="password" placeholder="Password" type="password" />
+                <TextField name="organization" placeholder="Organization" />
+                <TextField name="name" placeholder="Full Name" />
                 <ErrorsField />
                 <SubmitField />
               </Card.Body>
