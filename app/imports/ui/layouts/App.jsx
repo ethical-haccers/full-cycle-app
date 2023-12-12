@@ -47,8 +47,8 @@ const App = () => {
           <Route path="/rent" element={<ProtectedRoute><RentContainer owner={Meteor.us} /></ProtectedRoute>} />
           <Route path="/return" element={<ProtectedRoute><ReturnContainer /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><OrderHistory /></ProtectedRoute>} />
-          <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/faqs" element={<FAQ />} />
+          <Route path="/about" element={<Landing />} />
           <Route path="/accountspage" element={<AdminProtectedRoute ready={ready}><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
           <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
