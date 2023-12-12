@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 const StuffsAccounts = ({ user }) => (
   <tr>
     <td>{user.username}</td>
+<<<<<<< HEAD
     <td>{user.password}</td>
+=======
+    <td>{user._id}</td>
+>>>>>>> 51dc0cb65723b70dbde163439f51145c91e997b8
   </tr>
 );
 
@@ -14,7 +18,10 @@ StuffsAccounts.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string,
     _id: PropTypes.string,
+<<<<<<< HEAD
     password: PropTypes.string,
+=======
+>>>>>>> 51dc0cb65723b70dbde163439f51145c91e997b8
   }).isRequired,
 };
 
