@@ -29,8 +29,6 @@ const AccountsPage = () => {
               <tr>
                 <th>username</th>
                 <th>password</th>
-                <th>name</th>
-                <th>organization</th>
               </tr>
             </thead>
             <tbody>
