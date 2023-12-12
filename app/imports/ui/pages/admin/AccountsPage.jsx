@@ -28,7 +28,7 @@ const AccountsPage = () => {
             <thead>
               <tr>
                 <th>username</th>
-                <th>password</th>
+                <th>id</th>
               </tr>
             </thead>
             <tbody>
