@@ -15,7 +15,11 @@ const OrderItem = ({ order, returnFunction }) => {
   if (order.status === 'with-vendor') {
     returnButton = 'returned';
   } else {
-    returnButton = <Button className="btn btn-success" onClick={handleReturnClick(order._id)}><i aria-hidden="true"> <Receipt /> </i></Button>;
+    returnButton = (
+      <Button className="btn btn-success" onClick={() => handleReturnClick(order._id)}>
+        <i aria-hidden="true"> <Receipt /> </i>
+      </Button>
+    );
   }
   if (order.returnDate) {
     returnDate = order.returnDate.toLocaleDateString('en-US');

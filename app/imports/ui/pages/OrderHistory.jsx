@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Button, ButtonGroup, Col, Container, Row, Table } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -8,6 +8,11 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 /* Renders a table containing all Container documents. Use <OrderItem> to render each row. */
 const OrderHistory = () => {
+  const [orderFilter, setFilter] = useState({});
+  const filterActive = { returnDate: null };
+  const filterAll = {};
+  const handleChanges = e => setFilter(e.target.value);
+
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, orders } = useTracker(() => {
     // Note that this subscription will get cleaned up
@@ -17,12 +22,12 @@ const OrderHistory = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Containers documents
-    const orderItems = Containers.collection.find({}).fetch();
+    const orderItems = Containers.collection.find(orderFilter).fetch();
     return {
       orders: orderItems,
       ready: rdy,
     };
-  }, []);
+  }, [orderFilter]);
 
   const returnItem = (orderID) => {
     // Call a method to remove the item from the collection
@@ -43,23 +48,23 @@ const OrderHistory = () => {
             <h2>Order History</h2>
             <Row className="justify-content-center">
               <ButtonGroup className="py-3">
-                <Button variant="light" className="border border-secondary border-1">Show All Orders</Button>
-                <Button variant="light" className="border border-secondary border-1">Show Active Orders</Button>
+                <Button onClick={() => setFilter(filterAll)}>Show All Orders</Button>
+                <Button onClick={() => setFilter(filterActive)}>Active Orders</Button>
               </ButtonGroup>
             </Row>
           </Col>
           <Table striped bordered hover className="text-center">
             <thead>
-              <tr>
-                <th>Container ID</th>
-                <th>Checkout Date</th>
-                <th>Return Date</th>
-                <th>Status</th>
-                <th>Return</th>
-              </tr>
+            <tr>
+              <th>Container ID</th>
+              <th>Checkout Date</th>
+              <th>Return Date</th>
+              <th>Status</th>
+              <th>Return</th>
+            </tr>
             </thead>
             <tbody>
-              {orders.map((order) => <OrderItem key={order._id} order={order} returnFunction={returnItem(order._id)} />)}
+            {orders.map((order) => <OrderItem key={order._id} order={order} returnFunction={returnItem(order._id)} />)}
             </tbody>
           </Table>
         </Col>
