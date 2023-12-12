@@ -13,6 +13,7 @@ const AccountsPage = () => {
     const rdy = subscription.ready();
     // userAccount saved into useraccounts. userAccount not used outside useTracker
     const userAccount = Meteor.users.find({}).fetch();
+    console.log(userAccount);
     return {
       useraccounts: userAccount,
       ready: rdy,
@@ -29,8 +30,6 @@ const AccountsPage = () => {
               <tr>
                 <th>username</th>
                 <th>password</th>
-                <th>name</th>
-                <th>organization</th>
               </tr>
             </thead>
             <tbody>
