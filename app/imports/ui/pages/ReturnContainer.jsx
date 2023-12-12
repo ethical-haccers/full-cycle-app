@@ -39,7 +39,7 @@ const ReturnContainer = () => {
       // containerReturn.status = 'cleaning';
       // console.log(containerReturn);
       Containers.collection.update(_.find(orders, function(order) { return order.containerId == containerID }), { $set: { returnDate: new Date() }});
-
+      Containers.collection.update(_.find(orders, function(order) { return order.containerId == containerID }), { $set: { status: 'cleaning' }});
     }
   };
   console.log(orders);
