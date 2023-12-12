@@ -17,7 +17,6 @@ const AdminOrderHistory = () => {
   const sortStatus = { sort: { status: 'in-use' } };
   const sortAccount = { sort: { owner: '0' } };
   const sortCheckout = { sort: { checkoutDate: 0 } };
-  const handleChanges = e => setFilter(e.target.value);
 
   const { ready, orders } = useTracker(() => {
     // Note that this subscription will get cleaned up
@@ -33,7 +32,7 @@ const AdminOrderHistory = () => {
       orders: orderItems,
       ready: rdy,
     };
-  },  [orderFilter, orderSort]);
+  }, [orderFilter, orderSort]);
   return (ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
@@ -42,14 +41,14 @@ const AdminOrderHistory = () => {
             <h2>Admin Order History</h2>
             <Row className="justify-content-center">
               <DropdownButton id="admin-filter-dropdown" title="Filter Results" variant="light" className="py-3">
-                <Dropdown.Item onClick={() => setSort(sortStatus)} onChange={handleChanges}>Filter By Status</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSort(sortStatus)}>Filter By Status</Dropdown.Item>
                 <Dropdown.Item onClick={() => setSort(sortAccount)}>Filter By Account (Alphabetical)</Dropdown.Item>
                 <Dropdown.Item onClick={() => setSort(sortCheckout)}>Filter By Checkout Date</Dropdown.Item>
               </DropdownButton>
             </Row>
             <Row className="justify-content-center">
               <ButtonGroup>
-                <Button name="buttonReturn" onClick={() => setFilter(filterReturn)} onChange={handleChanges}>Returned Orders</Button>
+                <Button onClick={() => setFilter(filterReturn)}>Returned Orders</Button>
                 <Button onClick={() => setFilter(filterAll)}>Show All Orders</Button>
                 <Button onClick={() => setFilter(filterActive)}>Active Orders</Button>
               </ButtonGroup>
