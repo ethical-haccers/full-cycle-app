@@ -43,21 +43,3 @@ Meteor.publish(null, function () {
   }
   return this.ready();
 });
-
-// Meteor.publish('Meteor.users.information', function({ userIds }) {
-//   // validate to see if it is what we want to use
-//   new SimpleSchema({
-//     userIds: { type: [String] }
-//   }).validate({ userIds });
-
-//   const selector = {
-//     _id: { $in: userIds }
-//   };
-
-//   // return two fields
-//   const options = {
-//     fields: { organization: 1, fullName: 1 }
-//   };
-
-//   return Meteor.users.find(selector, options);
-// });
