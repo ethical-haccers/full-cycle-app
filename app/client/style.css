@@ -45,8 +45,14 @@ footer, footer a {
   text-outline: black 2px;
 }
 
+.dashboard-card {
+  height: 30%;
+  font-size: 120%;
+  font-weight: lighter;
+  text-outline: black 2px;
+}
+
 .admin-landing {
-  text-align: center;
   margin-top: 20px;
 }
 
