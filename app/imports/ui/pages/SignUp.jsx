@@ -25,10 +25,10 @@ const SignUp = ({ location }) => {
   /* Handle SignUp submission. Create user account and a profile entry, then redirect to the home page. */
   const submit = (doc) => {
     const { email, password, organization, fullName } = doc;
-    const profile = { 
+    const profile = {
       organization: organization,
-      fullname: fullName
-    }
+      fullName: fullName,
+    };
     Accounts.createUser({ email, username: email, password, profile }, (err) => {
       if (err) {
         setError(err.reason);
@@ -40,7 +40,7 @@ const SignUp = ({ location }) => {
   };
 
   /* Display the signup form. Redirect to add page after successful registration and login. */
-  const { from } = location?.state || { from: { pathname: '/add' } };
+  const { from } = location?.state || { from: { pathname: '/home' } };
   // if correct authentication, redirect to from: page instead of signup screen
   if (redirectToReferer) {
     return <Navigate to={from} />;
@@ -55,10 +55,10 @@ const SignUp = ({ location }) => {
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
+                <TextField name="fullName" placeholder="Full Name" />
                 <TextField name="email" placeholder="E-mail address" />
                 <TextField name="password" placeholder="Password" type="password" />
                 <TextField name="organization" placeholder="Organization" />
-                <TextField name="name" placeholder="Full Name" />
                 <ErrorsField />
                 <SubmitField />
               </Card.Body>
