@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Receipt } from 'react-bootstrap-icons';
-import { Button } from 'react-bootstrap';
 
 /** Renders a single row in the order history. See pages/OrderHistory.jsx. */
-const OrderItem = ({ order, returnFunction }) => {
+const OrderItem = ({ order }) => {
     let returnDate;
     if (order.returnDate) {
       returnDate = order.returnDate.toLocaleDateString('en-US');

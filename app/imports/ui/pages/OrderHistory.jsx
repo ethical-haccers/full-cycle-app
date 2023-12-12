@@ -11,8 +11,6 @@ const OrderHistory = () => {
   const [orderFilter, setFilter] = useState({});
   const filterActive = { returnDate: null };
   const filterAll = {};
-  const handleChanges = e => setFilter(e.target.value);
-
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, orders } = useTracker(() => {
     // Note that this subscription will get cleaned up
