@@ -7,7 +7,7 @@ const AdminLanding = () => (
     <h1>Admin Dashboard</h1>
 
     <div className="dashboard-buttons">
-      <Link to="/ordersoverview">
+      <Link to="/adminhistory">
         <button type="button" className="dashboard-button">Orders Overview</button>
       </Link>
 

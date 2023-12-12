@@ -1,47 +1,48 @@
-// RentContainer.jsx
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, SelectField, SubmitField, TextField, DateField } from 'uniforms-bootstrap5';
-import swal from 'sweetalert';
+import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { Containers } from '../../api/container/Containers';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Containers } from '../../api/container/Containers';
+import { useTracker } from 'meteor/react-meteor-data';
 
 const formSchema = new SimpleSchema({
-  containerId: String,
-  checkoutDate: {
-    type: Date,
-    defaultValue: new Date(),
-  },
-  returnDate: {
-    type: Date,
-    optional: true,
-  },
-  status: {
-    type: String,
-    allowedValues: ['unassigned', 'cleaning', 'with-vendor', 'in-use'],
-    defaultValue: 'unassigned',
-  },
+  containerID: String,
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-const RentContainer = () => {
-  const submit = (data, formRef) => {
-    const { containerId, checkoutDate, returnDate, status } = data;
-    Containers.collection.insert(
-      { containerId, checkoutDate, returnDate, status },
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Item added successfully', 'success');
-          formRef.reset();
-        }
-      },
-    );
-  };
+const ReturnContainer = () => {
+  const { ready, orders } = useTracker(() => {
+    // Note that this subscription will get cleaned up
+    // when your component is unmounted or deps change.
+    // Get access to Containers documents.
+    const subscription = Meteor.subscribe(Containers.adminPublicationName);
+    // Determine if the subscription is ready
+    const rdy = subscription.ready();
+    // Get the Containers documents
+    const orderItems = Containers.collection.find({}).fetch();
+    return {
+      orders: orderItems,
+      ready: rdy,
+    };
+  }, []);
 
+  const submit = (data, formRef) => {
+    const { containerID } = data;
+    console.log(ready);
+    if (ready) {
+      // const containerReturn = _.find(orders, function(order) { return order.containerId == containerId });
+      // console.log(containerReturn);
+      // containerReturn.returnDate = new Date();
+      // containerReturn.status = 'cleaning';
+      // console.log(containerReturn);
+      Containers.collection.update(_.find(orders, function(order) { return order.containerId == containerID }), { $set: { returnDate: new Date() }});
+
+    }
+  };
+  console.log(orders);
   let fRef = null;
   return (
     <Container className="py-3">
@@ -50,10 +51,7 @@ const RentContainer = () => {
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
-                <TextField name="containerId" />
-                <DateField name="checkoutDate" disabled />
-                <DateField name="returnDate" />
-                <SelectField name="status" />
+                <TextField name="containerID" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
@@ -65,4 +63,4 @@ const RentContainer = () => {
   );
 };
 
-export default RentContainer;
+export default ReturnContainer;
