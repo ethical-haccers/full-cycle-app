@@ -33,7 +33,7 @@ const AdminOrderHistory = () => {
       orders: orderItems,
       ready: rdy,
     };
-  }, []);
+  },  [orderFilter, orderSort]);
   return (ready ? (
     <Container className="py-3">
       <Row className="justify-content-center">
