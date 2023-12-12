@@ -5,51 +5,31 @@ import { Button } from 'react-bootstrap';
 
 /** Renders a single row in the order history. See pages/OrderHistory.jsx. */
 const OrderItem = ({ order, returnFunction }) => {
-  let returnButton;
-  let returnDate;
-  const handleReturnClick = (orderId) => {
-    if (window.confirm('Return this container?')) {
-      returnFunction(orderId);
+    let returnDate;
+    if (order.returnDate) {
+      returnDate = order.returnDate.toLocaleDateString('en-US');
+    } else {
+      returnDate = '-';
     }
-  };
-  if (order.status === 'with-vendor') {
-    returnButton = 'returned';
-  } else {
-    returnButton = (
-      <Button className="btn btn-success" onClick={() => handleReturnClick(order._id)}>
-        <i aria-hidden="true"> <Receipt /> </i>
-      </Button>
+    return (
+      <tr>
+        <td>{order.containerId}</td>
+        <td>{order.owner}</td>
+        <td><p>{order.checkoutDate.toLocaleDateString('en-US')}</p></td>
+        <td><p>{returnDate}</p></td>
+        <td>{order.status}</td>
+      </tr>
     );
-  }
-  if (order.returnDate) {
-    returnDate = order.returnDate.toLocaleDateString('en-US');
-  } else {
-    returnDate = '-';
-  }
-  return (
-    <tr>
-      <td>{order.containerId}</td>
-      <td><p>{order.checkoutDate.toLocaleDateString('en-US')}</p></td>
-      <td><p>{returnDate}</p></td>
-      <td>{order.status}</td>
-      <td>
-        {returnButton}
-      </td>
-    </tr>
-  );
-};
-
+  };
 // Require a document to be passed to this component.
-OrderItem.propTypes = {
-  order: PropTypes.shape({
-    containerId: PropTypes.string,
-    checkoutDate: PropTypes.instanceOf(Date),
-    returnDate: PropTypes.instanceOf(Date),
-    status: PropTypes.string,
-    _id: PropTypes.string,
-  }).isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  returnFunction: PropTypes.func.isRequired, // The function to handle container return
-};
-
+  OrderItem.propTypes = {
+    order: PropTypes.shape({
+      containerId: PropTypes.string,
+      owner: PropTypes.string,
+      checkoutDate: PropTypes.instanceOf(Date),
+      returnDate: PropTypes.instanceOf(Date),
+      status: PropTypes.string,
+      _id: PropTypes.string,
+    }).isRequired,
+  };
 export default OrderItem;
