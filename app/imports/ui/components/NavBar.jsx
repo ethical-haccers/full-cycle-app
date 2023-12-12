@@ -36,6 +36,9 @@ const NavBar = () => {
                 <NavDropdown.Item id="accounts-overview" as={NavLink} to="/accountspage">
                   Accounts Overview
                 </NavDropdown.Item>
+                <NavDropdown.Item id="containers-overview" as={NavLink} to="/containerspage">
+                  Containers Overview
+                </NavDropdown.Item>
               </NavDropdown>
             ) : ''}
           </Nav>

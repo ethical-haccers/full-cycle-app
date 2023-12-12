@@ -19,6 +19,7 @@ import AdminLanding from '../pages/admin/AdminLanding';
 import OrderHistory from '../pages/OrderHistory';
 import AdminOrderHistory from '../pages/AdminOrderHistory';
 import AccountsPage from '../pages/admin/AccountsPage';
+import ContainersPage from '../pages/ContainersPage';
 import FAQ from '../pages/FAQ';
 
 const AdminOrRegularLanding = () => {
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><AdminOrderHistory /></AdminProtectedRoute>} />
           <Route path="/accountoverview" element={<AdminProtectedRoute><AccountsPage /></AdminProtectedRoute>} />
           <Route path="/adminorderhistory" element={<AdminProtectedRoute><AdminOrderHistory /></AdminProtectedRoute>} />
+          <Route path="/containerspage" element={<AdminProtectedRoute><ContainersPage /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
