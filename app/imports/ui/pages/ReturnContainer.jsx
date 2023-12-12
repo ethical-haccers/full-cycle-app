@@ -33,16 +33,12 @@ const ReturnContainer = () => {
     const { containerID } = data;
     console.log(ready);
     if (ready) {
-      // const containerReturn = _.find(orders, function(order) { return order.containerId == containerId });
-      // console.log(containerReturn);
-      // containerReturn.returnDate = new Date();
-      // containerReturn.status = 'cleaning';
-      // console.log(containerReturn);
-      Containers.collection.update(_.find(orders, function(order) { return order.containerId == containerID }), { $set: { returnDate: new Date() }});
-      Containers.collection.update(_.find(orders, function(order) { return order.containerId == containerID }), { $set: { status: 'cleaning' }});
+      const containerReturn = Containers.collection.find({ containerId: containerID }).fetch();
+      console.log(containerReturn);
+      Containers.collection.update(containerReturn[0]._id, { $set: { returnDate: new Date(), status: 'cleaning' }});
+      console.log(Containers.collection.find({}).fetch());
     }
   };
-  console.log(orders);
   let fRef = null;
   return (
     <Container className="py-3">
